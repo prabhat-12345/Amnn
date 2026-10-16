@@ -3,29 +3,24 @@ import streamlit as st
 st.set_page_config(
     page_title="Happy Birthday Aman!", 
     page_icon="🎂",
-    layout="wide" # Poori screen use karne ke liye wide layout
+    layout="wide"
 )
 
-# Balloons aur snow effects
+# Sirf balloons rakhe hain, snowflakes hata diye taaki text saaf dikhe
 st.balloons()
-st.snow()
 
 st.markdown(
     """
     <style>
-    /* Streamlit ki default top padding aur margin ko poora khatam karne ke liye */
+    /* Pura padding aur scrollbar khatam karne ke liye */
     .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
-        padding-left: 0rem !important;
-        padding-right: 0rem !important;
+        padding: 0rem !important;
         max-width: 100% !important;
     }
     
-    /* Header aur footer hide karne ke liye taaki sirf aapka text dikhe */
     #MainMenu, header, footer {visibility: hidden;}
     
-    /* Poori screen par background animation fix karne ke liye */
+    /* Pure screen ko handle karne ke liye viewport adjustments */
     .stApp {
         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
@@ -48,65 +43,60 @@ st.markdown(
         100% { background-position: 0% 50%; }
     }
 
-    /* Pura full-screen container */
-    .full-display-container {
-        width: 100%;
-        text-align: center;
+    /* Text ko mobile screen ke ekdum center me lane ke liye container */
+    .center-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        height: 80vh; /* Pura vertical space use karega */
+        text-align: center;
     }
 
-    /* Ekdum Bada Happy Birthday Text */
+    /* Mobile standard ke liye ekdum bada Happy Birthday text */
     .giant-birthday {
         font-family: 'Arial Black', sans-serif;
-        font-size: 8vw; /* Screen width ke hisab se automatic bada hoga */
+        font-size: 11vw; /* Isko aur bada kiya hai */
         font-weight: 900;
         color: #ffffff;
         text-transform: uppercase;
-        letter-spacing: 5px;
-        line-height: 1;
+        letter-spacing: 2px;
+        line-height: 1.2;
         margin: 0;
-        text-shadow: 0 0 20px #fff, 0 0 40px #ff4757, 0 0 60px #ff4757;
-        animation: pulse 1.5s infinite alternate;
+        text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    /* Sabse Bada AMAN Name Text */
+    /* Mobile ke liye sabse bada AMAN text */
     .giant-name {
         font-family: 'Arial Black', sans-serif;
-        font-size: 14vw; /* Ekdum giant size */
+        font-size: 20vw; /* Ekdum giant mobile size */
         font-weight: 900;
         background: linear-gradient(to right, #ffe259, #ffa751);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: 10px;
+        letter-spacing: 5px;
         line-height: 1.1;
-        margin-top: 20px;
+        margin-top: 30px;
         display: block;
-        filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.4));
-        animation: float 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.05); }
+        filter: drop-shadow(3px 5px 10px rgba(0,0,0,0.4));
+        animation: float 2s ease-in-out infinite;
     }
 
     @keyframes float {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
+        50% { transform: translateY(-15px); }
     }
 
-    /* Mobile ke liye responsive scaling */
-    @media (max-width: 768px) {
-        .giant-birthday { font-size: 10vw; letter-spacing: 2px; }
-        .giant-name { font-size: 18vw; letter-spacing: 4px; }
+    /* Desktop screen par aur bada dikhane ke liye media query */
+    @media (min-width: 769px) {
+        .giant-birthday { font-size: 6vw; }
+        .giant-name { font-size: 10vw; }
     }
     </style>
     
-    <div class="full-display-container">
-        <div class="giant-birthday">🎉 HAPPY BIRTHDAY 🎉</div>
+    <div class="center-wrapper">
+        <div class="giant-birthday">🎉 HAPPY<br>BIRTHDAY 🎉</div>
         <div class="giant-name">AMAN</div>
     </div>
     """, 
