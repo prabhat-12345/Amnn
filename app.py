@@ -1,25 +1,45 @@
 import streamlit as st
 
-# Page Configuration
 st.set_page_config(
-    page_title="Happy Birthday Aman! 🎂", 
-    page_icon="👑",
-    layout="centered"
+    page_title="Happy Birthday Aman!", 
+    page_icon="🎂",
+    layout="wide" # Poori screen use karne ke liye wide layout
 )
 
-# Balloons aur Confetti dono automatically chalyenge
+# Balloons aur snow effects
 st.balloons()
-st.snow()  # Yeh premium falling effect dega
+st.snow()
 
-# Premium CSS Animations aur Custom UI
 st.markdown(
     """
     <style>
-    /* Premium Animated Gradient Background */
+    /* Streamlit ki default top padding aur margin ko poora khatam karne ke liye */
+    .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+        max-width: 100% !important;
+    }
+    
+    /* Header aur footer hide karne ke liye taaki sirf aapka text dikhe */
+    #MainMenu, header, footer {visibility: hidden;}
+    
+    /* Poori screen par background animation fix karne ke liye */
     .stApp {
         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
+        animation: gradientBG 10s ease infinite;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     @keyframes gradientBG {
@@ -28,81 +48,66 @@ st.markdown(
         100% { background-position: 0% 50%; }
     }
 
-    /* Outer Wrapper for Card */
-    .premium-card {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 40px 20px;
+    /* Pura full-screen container */
+    .full-display-container {
+        width: 100%;
         text-align: center;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-        margin-top: 50px;
-        animation: fadeIn 2s ease-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Premium Neon Glow Text */
-    .birthday-text {
-        font-family: 'Poppins', 'Arial Black', sans-serif;
-        font-size: 4.5rem;
+    /* Ekdum Bada Happy Birthday Text */
+    .giant-birthday {
+        font-family: 'Arial Black', sans-serif;
+        font-size: 8vw; /* Screen width ke hisab se automatic bada hoga */
         font-weight: 900;
         color: #ffffff;
         text-transform: uppercase;
-        letter-spacing: 3px;
+        letter-spacing: 5px;
+        line-height: 1;
         margin: 0;
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff4757, 0 0 30px #ff4757;
-        animation: pulse 2s infinite alternate;
+        text-shadow: 0 0 20px #fff, 0 0 40px #ff4757, 0 0 60px #ff4757;
+        animation: pulse 1.5s infinite alternate;
     }
 
-    /* Premium Name Style with Gradient */
-    .name-text {
-        font-family: 'Poppins', 'Arial Black', sans-serif;
-        font-size: 7rem;
+    /* Sabse Bada AMAN Name Text */
+    .giant-name {
+        font-family: 'Arial Black', sans-serif;
+        font-size: 14vw; /* Ekdum giant size */
         font-weight: 900;
         background: linear-gradient(to right, #ffe259, #ffa751);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: 8px;
-        margin-top: 10px;
+        letter-spacing: 10px;
+        line-height: 1.1;
+        margin-top: 20px;
         display: block;
-        filter: drop-shadow(2px 4px 10px rgba(0,0,0,0.3));
-        animation: float 3s ease-in-out infinite;
-    }
-
-    /* Animations definition */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
+        filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.4));
+        animation: float 2.5s ease-in-out infinite;
     }
 
     @keyframes pulse {
-        0% { transform: scale(1); text-shadow: 0 0 10px #fff, 0 0 20px #ff4757, 0 0 30px #ff4757; }
-        100% { transform: scale(1.02); text-shadow: 0 0 15px #fff, 0 0 30px #ff6b81, 0 0 45px #ff6b81; }
+        0% { transform: scale(1); }
+        100% { transform: scale(1.05); }
     }
 
     @keyframes float {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
+        50% { transform: translateY(-20px); }
     }
 
-    /* Mobile friendly fixes */
-    @media (max-width: 600px) {
-        .birthday-text { font-size: 2.2rem; }
-        .name-text { font-size: 3.8rem; letter-spacing: 4px; }
-        .premium-card { padding: 25px 10px; margin-top: 20px; }
+    /* Mobile ke liye responsive scaling */
+    @media (max-width: 768px) {
+        .giant-birthday { font-size: 10vw; letter-spacing: 2px; }
+        .giant-name { font-size: 18vw; letter-spacing: 4px; }
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# UI render karna premium glass container me
-st.markdown(
-    """
-    <div class="premium-card">
-        <div class="birthday-text">✨ HAPPY BIRTHDAY ✨</div>
-        <div class="name-text">AMAN</div>
+    
+    <div class="full-display-container">
+        <div class="giant-birthday">🎉 HAPPY BIRTHDAY 🎉</div>
+        <div class="giant-name">AMAN</div>
     </div>
     """, 
     unsafe_allow_html=True
